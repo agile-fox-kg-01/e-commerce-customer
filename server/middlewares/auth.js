@@ -17,7 +17,7 @@ async function auth(req, res, next) {
             })
             if (!user) {
                 res.status(401).json({
-                    errors: 'login first'
+                    errors: 'please login first'
                 })
             } else {
                 req.userLogin = user
