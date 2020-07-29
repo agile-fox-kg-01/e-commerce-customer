@@ -9,7 +9,8 @@ export default new Vuex.Store({
   state: {
     products: [],
     carts: [],
-    product: {}
+    product: {},
+    transactions: []
   },
   mutations: {
     FETCHPRODUCTS (state, payload) {
@@ -21,17 +22,27 @@ export default new Vuex.Store({
     FETCHONEPRODUCT (state, payload) {
       state.product = payload
     },
-    ADDTOCART (state, payload) {
-      state.carts.push(payload)
-    },
     FETCHCART (state, payload) {
       state.carts = payload
     },
     RESETCART (state, payload) {
       state.carts = []
     },
-    DELETEFAV (state, payload) {
+    DELETECART (state, payload) {
       state.carts = state.carts.filter(carts => carts.id !== payload)
+    },
+    CHECKOUT (state, payload) {
+      state.transactions.push(payload)
+      state.carts = []
+    },
+    FETCHTRANSACTION (state, payload) {
+      state.transactions = payload
+    },
+    RESETTRANSACTION (state) {
+      state.transactions = []
+    },
+    DELETETRANSACTION (state, payload) {
+      state.transactions = state.transactions.filter(transactions => transactions.id !== payload)
     }
   },
   actions: {
@@ -77,7 +88,6 @@ export default new Vuex.Store({
         }
       })
         .then(res => {
-          commit('ADDTOCART', res.data)
           Swal.fire({
             position: 'center',
             icon: 'success',
@@ -86,10 +96,10 @@ export default new Vuex.Store({
             timer: 1000
           })
         })
-        .catch(err => {
+        .catch(() => {
           Swal.fire({
             icon: 'error',
-            title: `Oops...${err.response.data.errors}`,
+            title: 'Oops... this is awkward',
             text: 'please contact developers ^^'
           })
         })
@@ -123,11 +133,83 @@ export default new Vuex.Store({
         }
       })
         .then(res => {
-          commit('DELETEFAV', payload)
+          commit('DELETECART', payload)
           Swal.fire({
             position: 'center',
             icon: 'success',
             title: 'Success delete item in your cart',
+            showConfirmButton: false,
+            timer: 1500
+          })
+        })
+        .catch(err => {
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: err.response.data.errors
+          })
+        })
+    },
+    checkout ({ commit }) {
+      axios({
+        method: 'post',
+        url: '/checkout',
+        headers: {
+          token: localStorage.getItem('token')
+        }
+      })
+        .then(res => {
+          commit('CHECKOUT', res.data)
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Success Checkout all item in cart',
+            showConfirmButton: false,
+            timer: 1500
+          })
+        })
+        .catch(err => {
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: err.response.data.errors
+          })
+        })
+    },
+    fetchTransaction ({ commit }) {
+      axios({
+        method: 'get',
+        url: '/transactions',
+        headers: {
+          token: localStorage.getItem('token')
+        }
+      })
+        .then(res => {
+          commit('FETCHTRANSACTION', res.data)
+        })
+        .catch(err => {
+          commit('RESETTRANSACTION')
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: err.response.data.errors
+          })
+        })
+    },
+    deleteTransaction ({ commit }, payload) {
+      axios({
+        method: 'delete',
+        url: `/transactions/delete/${payload}`,
+        headers: {
+          token: localStorage.getItem('token')
+        }
+      })
+        .then(res => {
+          commit('DELETETRANSACTION', payload)
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Success delete item in your transaction history',
             showConfirmButton: false,
             timer: 1500
           })

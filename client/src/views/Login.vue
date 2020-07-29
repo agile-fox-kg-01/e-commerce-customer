@@ -26,7 +26,7 @@
             <b-button type="submit" variant="primary" class="m-1">Submit</b-button>
             <b-button type="reset" variant="danger" class="m-1">Reset</b-button>
         </b-form>
-        <b-button @click="googlesignin" variant="warning" class="m-1">Google</b-button>
+        <b-button @click="googlesignin" variant="warning" class="fa fa-google m-1"> SignIn</b-button>
     </b-card>
   </div>
 </template>
@@ -113,26 +113,26 @@ export default {
 
 <style scoped>
 @media (min-width: 100px) {
-    .login {
-        margin: 40px 40px 40px 40px;
-        padding: 0px 50px;
-    }
+  .login {
+    margin: 40px 40px 40px 40px;
+    padding: 0px 50px;
+  }
 }
 
 @media (min-width: 668px) {
-    .login {
-        margin: 40px 40px 40px 40px;
-        padding: 0px 50px;
-    }
+  .login {
+    margin: 40px 40px 40px 40px;
+    padding: 0px 50px;
+  }
 }
 
 @media (min-width: 992px) {
-    .login {
-        margin: 40px 300px 40px 300px;
-        padding: 0px 50px;
-    }
+  .login {
+    margin: 40px 300px 40px 300px;
+    padding: 0px 50px;
+  }
 }
 .login-card {
-    border-radius: 25px;
+  border-radius: 25px;
 }
 </style>

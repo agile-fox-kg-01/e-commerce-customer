@@ -5,9 +5,8 @@ const { signToken } = require('../helpers/jwt')
 const { clearUsers } = require('./helpers/cleartable')
 const { seedUsers, seedProducts } = require('./helpers/seedTable')
 
-// beforeAll(seedUsers)
-// afterAll(clearUsers)
-
+beforeAll(seedUsers)
+afterAll(clearUsers)
 
 const admin = { email:'admin@user.com' }
 const customer = { email:'customer@user.com' }
@@ -15,6 +14,7 @@ const tokenAdmin = signToken(admin)
 const tokenCustomer = signToken(customer)
 
 describe('Product All Routes Test', function() {
+    beforeAll(seedProducts)
     test('Browse products login as admin', function(done) {
         request(app)
         .get('/products')

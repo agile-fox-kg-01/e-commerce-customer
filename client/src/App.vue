@@ -5,4 +5,7 @@
 </template>
 
 <style>
+#app {
+  font-family: 'Fredoka One', cursive;
+}
 </style>

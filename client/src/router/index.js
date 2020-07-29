@@ -4,7 +4,9 @@ import Swal from 'sweetalert2'
 import Home from '../views/Home.vue'
 import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
+import SingleProduct from '../views/SingleProduct'
 import Cart from '../views/Cart.vue'
+import Transaction from '../views/Transaction.vue'
 
 Vue.use(VueRouter)
 
@@ -39,6 +41,11 @@ const routes = [
     }
   },
   {
+    path: '/product/:id',
+    name: 'Product',
+    component: SingleProduct
+  },
+  {
     path: '/cart',
     name: 'Cart',
     component: Cart,
@@ -50,6 +57,24 @@ const routes = [
         Swal.fire({
           icon: 'error',
           title: 'Oops...login first to access cart',
+          showConfirmButton: false,
+          timer: 1000
+        })
+      }
+    }
+  },
+  {
+    path: '/transaction',
+    name: 'Transaction',
+    component: Transaction,
+    beforeEnter: (to, from, next) => {
+      if (localStorage.getItem('token')) {
+        next()
+      } else {
+        next({ path: '/login' })
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...login first to access transaction',
           showConfirmButton: false,
           timer: 1000
         })

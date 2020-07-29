@@ -1,4 +1,4 @@
-const { Product, Cart } = require('../models/index')
+const { Product, Cart, Transaction, User } = require('../models/index')
 
 class CustomerController {
     static async browse(req, res, next) {
@@ -33,12 +33,25 @@ class CustomerController {
                     errors: 'Product not found'
                 })
             } else {
-                const cart = {
-                    UserId: req.userLogin.id,
-                    ProductId: req.params.id
-                }
-                const result = await Cart.create(cart)
-                res.status(201).json(result)
+				const carts = await Cart.findOne({
+					where: {
+						ProductId: req.params.id
+					}
+				})
+				console.log(carts)
+				if(carts === null) {
+					const cart = {
+						UserId: req.userLogin.id,
+						ProductId: req.params.id
+					}
+					const result = await Cart.create(cart)
+					res.status(201).json(result)
+				} else {
+					next({
+						name: 'ValidationError',
+						errors: 'Product Already in your cart'
+					})
+				}
             }
         } catch (error) {
             next(error)
@@ -66,6 +79,73 @@ class CustomerController {
             })
             res.status(200).json({
                 message: "Successfully delete item in your cart"
+            })
+        } catch (error) {
+            next(error)
+        }
+    }
+    static async checkout(req, res, next) {
+        try {
+            const carts = await Cart.findAll({
+                include: Product,
+                where: {
+                    UserId: req.userLogin.id
+                }
+            })
+            let total = 0
+            let productId = []
+            let detailProduct = carts.map(temp => {
+                productId.push(temp.ProductId)
+                total += temp.Product.price
+                return `product: ${temp.Product.name} - Rp.${temp.Product.price.toLocaleString("id-ID")}`
+            })
+            const checkout = {
+                email: req.userLogin.email,
+                detail: detailProduct.join(', '),
+                total: total,
+                UserId: req.userLogin.id
+            }
+            const products = await Product.findAll({ where: {id: productId} })
+            products.map(temp => {
+                if (temp.stock === 1) {
+                    Product.destroy({where: {id: temp.id}})
+                } else {
+                    Product.update({stock: temp.stock - 1 },{ where: {id: temp.id} })
+                }
+            })
+            await Cart.destroy({
+                where: {
+                    UserId: req.userLogin.id
+                }
+            })
+            const result = await Transaction.create(checkout)
+            res.status(201).json(result)
+        } catch (error) {
+            next(error)
+        }
+    }
+    static async showTransaction(req, res, next) {
+        try {
+            const transactions = await Transaction.findAll({
+				attributes: ['id', 'email', 'detail', 'total', 'createdAt'],
+                where: {
+                    UserId: req.userLogin.id
+                }
+            })
+            res.status(200).json(transactions)
+        } catch (error) {
+            next(error)
+        }
+    }
+    static async deleteTransaction(req, res, next) {
+        try {
+            await Transaction.destroy({
+                where: {
+                    id: req.params.id
+                }
+            })
+            res.status(200).json({
+                message: "Successfully delete your selected transaction history"
             })
         } catch (error) {
             next(error)

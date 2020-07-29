@@ -4,12 +4,12 @@ const app = require('../app')
 const { clearUsers } = require('./helpers/cleartable')
 const { seedUsers } = require('./helpers/seedTable')
 
-// beforeAll(seedUsers)
-// afterAll(clearUsers)
+beforeAll(seedUsers)
+afterAll(clearUsers)
 
 describe('User All Routes Test', function() {
     // work only first time because unique validation
-    test.skip('register', function(done) {
+    test('register', function(done) {
         request(app)
         .post('/register')
         .send({email: 'sandi@user.com', password: 'password', role: 'admin'})

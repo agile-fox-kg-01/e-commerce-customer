@@ -10,7 +10,7 @@
         <b-navbar-nav class="ml-auto">
           <b-nav-item to="/login" v-if="isLogin === false">login</b-nav-item>
           <b-nav-item to="/register" v-if="isLogin === false">register</b-nav-item>
-          <b-nav-item right @click="logout" v-if="isLogin === true">Sign Out</b-nav-item>
+          <b-nav-item right @click="logout" v-if="isLogin === true"><i class="fa fa-sign-out" aria-hidden="true"></i>Sign Out</b-nav-item>
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
@@ -60,11 +60,26 @@ export default {
 </script>
 
 <style scoped>
-.navbar {
-  padding: 10px 120px;
+@media (min-width: 100px) {
+  .navbar {
+    padding: 10px 10px;
+  }
+}
+
+@media (min-width: 668px) {
+  .navbar {
+    padding: 10px 50px;
+  }
+}
+
+@media (min-width: 992px) {
+  .navbar {
+    padding: 10px 110px;
+  }
 }
 
 .nav-icon {
   font-size: 40px;
+  font-family: 'Permanent Marker', cursive;
 }
 </style>

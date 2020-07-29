@@ -4,6 +4,7 @@ const router = express.Router()
 const UserController = require('../controllers/UserController')
 const ProductController = require('../controllers/ProductController')
 const CustomerController = require('../controllers/CustomerController')
+
 const { auth, isAdmin, isOwner } = require('../middlewares/auth')
 
 // user
@@ -24,5 +25,8 @@ router.get('/product/:id', CustomerController.read)
 router.post('/addToCart/:id', auth, CustomerController.addCart)
 router.get('/carts', auth, CustomerController.showCart)
 router.delete('/carts/delete/:id', auth, isOwner, CustomerController.deleteCartItem)
+router.post('/checkout', auth, CustomerController.checkout)
+router.get('/transactions', auth, CustomerController.showTransaction)
+router.delete('/transactions/delete/:id', auth, CustomerController.deleteTransaction)
 
 module.exports = router
