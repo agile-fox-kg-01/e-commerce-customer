@@ -26,13 +26,14 @@ export default new Vuex.Store({
     fetchCarts ({ commit }, payload) {
       // console.log(localStorage.getItem('token'))
       axios({
-        methods: 'GET',
+        method: 'GET',
         url: '/chart/show',
         headers: {
           token: localStorage.getItem('token')
         }
       })
         .then(({ data }) => {
+          console.log('Fetch succes ichlas')
           console.log(data.charts)
           commit('FETCH_CARTS', data.charts)
         })
@@ -40,23 +41,44 @@ export default new Vuex.Store({
     },
     addToCart ({ commit }, payload) {
       console.log(payload)
-      axios
-        .post('/chart/add', {
+      axios({
+        method: 'POST',
+        url: '/chart/add',
+        headers: {
+          token: localStorage.getItem('token')
+        },
+        data: {
           quantity: payload.quantity,
           ProductId: payload.ProductId
-        })
-        .set({ token: localStorage.getItem('token') })
+        }
+      })
         .then(({ data }) => {
-          console.log('Berhasil add to cart')
-          commit('FETCH_CHARTS', data)
-          router.push({ path: '/cart' })
+          console.log(data.charts)
+          // router.push({ path: '/cart' })
+        })
+        .catch(console.log)
+    },
+    deleteCart (_, payload) {
+      console.log(payload.ProductId)
+      axios({
+        method: 'DELETE',
+        url: '/chart/delete',
+        headers: {
+          token: localStorage.getItem('token')
+        },
+        data: {
+          ProductId: payload.ProductId
+        }
+      })
+        .then(({ data }) => {
+          console.log(data)
         })
         .catch(console.log)
     },
     fetchProduct ({ commit }, payload) {
       // console.log(localStorage.getItem('token'))
       axios({
-        methods: 'GET',
+        method: 'GET',
         url: `/products/${payload.id}`,
         headers: {
           token: localStorage.getItem('token')
@@ -70,7 +92,7 @@ export default new Vuex.Store({
     },
     fetchProducts ({ commit }) {
       axios({
-        methods: 'GET',
+        method: 'GET',
         url: '/products',
         headers: {
           token: localStorage.getItem('token')
@@ -96,7 +118,7 @@ export default new Vuex.Store({
         .catch(console.log)
     },
     postRegister (_, payload) {
-      console.log(payload)
+      // console.log(payload)
       axios({
         method: 'POST',
         url: '/users/register',
@@ -106,7 +128,7 @@ export default new Vuex.Store({
         }
       })
         .then(({ data }) => {
-          console.log(data.message)
+          // console.log(data.message)
           router.push({ path: '/login' })
         })
         .catch(console.log)

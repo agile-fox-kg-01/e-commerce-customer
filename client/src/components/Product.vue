@@ -10,6 +10,9 @@
             {{ product.name }}
           </h4>
           <strong>Rp. {{ product.price }}</strong>
+          <br>
+          <strong>Stock: {{ product.stock }}</strong>
+
         </div>
         <span style="margin-bottom:10px; margin-left: 20px;">Quantity</span>
 
@@ -49,7 +52,6 @@ export default {
       })
     }
   }
-
 }
 </script>
 

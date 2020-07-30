@@ -7,6 +7,8 @@
     <div class="col-sm-6">
       <form @submit.prevent="login">
         <h3 style="font-family: 'Piedra', cursive; font-size:32px">LOGIN FORM</h3>
+        <router-link :to="{ name: 'Register' }">Register Here</router-link>
+        <br><br>
         <div class="form-group">
           <label for="exampleInputEmail1">Email address</label>
           <input v-model="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" autocomplete="off">

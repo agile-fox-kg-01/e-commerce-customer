@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <Navbar :cart="cart" />
+    <Navbar />
     <div class="container">
     </div>
     <div style="margin-top:100px">
@@ -11,7 +11,6 @@
 
     </div>
     <div class="footer" style="margin-top:100px" >
-
     </div>
   </div>
 </template>

@@ -5,6 +5,9 @@
     :key="cart.id"
     :cart="cart"
     />
+    <!-- <div>
+      <a href="">Checkout : Rp. {{ hasil }}</a>
+    </div> -->
   </div>
 </template>
 
@@ -28,6 +31,13 @@ export default {
     carts () {
       return this.$store.state.carts
     }
+    // hasil () {
+    //   let hasil = 0
+    //   this.carts.forEach(cart => {
+    //     hasil += Number(this.carts.quantity) * Number(this.carts.product.price)
+    //   })
+    //   return hasil
+    // }
   }
 }
 </script>

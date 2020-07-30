@@ -8,13 +8,17 @@
   </tr> -->
   <div class="col-3 mt-3">
     <div class="card h-100 text-left">
-      <img @click="goToDetail" :src="cart.Product.image_url" alt="" class="goToDetail">
-      <div @click="goToDetail" class="card-body goToDetail">
+      <img :src="cart.Product.image_url" alt="" class="goToDetail">
+      <div class="card-body goToDetail">
         <h4 class="card-title">
           {{ cart.Product.name }}
         </h4>
         <strong>Rp. {{ cart.Product.price }}</strong>
-        <strong>{{ cart.Product.stock }}</strong>
+        <br>
+        <strong>Stock : {{ cart.Product.stock }}</strong>
+        <hr>
+        <p>Quantity: {{ cart.quantity }}</p>
+        <a href="" @click.prevent="deleteCart">Delete</a>
       </div>
     </div>
   </div>
@@ -25,6 +29,13 @@ export default {
   name: 'CartCard',
   props: {
     cart: Object
+  },
+  methods: {
+    deleteCart () {
+      this.$store.dispatch('deleteCart', {
+        ProductId: this.cart.ProductId
+      })
+    }
   }
 }
 </script>

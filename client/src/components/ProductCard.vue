@@ -13,15 +13,6 @@
       </div>
     </div>
   </div>
-  <!-- <tr class="baris" @click="goToDetail">
-    <th scope="row">{{ product.id }}</th>
-    <td><img :src="product.image_url" alt="product.image_url" class="imageku"></td>
-    <td>{{ product.name }}</td>
-    <td>{{ product.price }}</td>
-    <td>{{ product.stock }}</td>
-    <td><a @click="goToDetail" class="btn btn-primary">Detail</a></td>
-    <td><button @click="goToDetail" class="btn btn-primary">Detail</button></td>
-  </tr> -->
 </template>
 
 <script>

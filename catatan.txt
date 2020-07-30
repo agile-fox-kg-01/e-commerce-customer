@@ -1,0 +1,2 @@
+1. Download vue cli plus vuex
+2. buat login dan register 

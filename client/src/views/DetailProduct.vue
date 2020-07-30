@@ -8,7 +8,6 @@
       <div class="container">
         <Product :product="product" />
       </div>
-
     </div>
   </div>
 </template>
