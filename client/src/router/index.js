@@ -41,6 +41,18 @@ const routes = [
     }
   },
   {
+    path: '/register/:role',
+    name: 'Register',
+    component: Register,
+    beforeEnter: (to, from, next) => {
+      if (localStorage.getItem('token')) {
+        next({ path: '/' })
+      } else {
+        next()
+      }
+    }
+  },
+  {
     path: '/product/:id',
     name: 'Product',
     component: SingleProduct

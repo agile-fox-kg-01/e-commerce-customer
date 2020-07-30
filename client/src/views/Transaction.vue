@@ -10,7 +10,7 @@
       <b-container fluid class="cart">
         <b-row class="product-cart">
             <b-col cols="12">
-                <b-card>
+                <b-card class="table-responsive">
                     <table class="table">
                         <thead>
                             <tr>

@@ -1,5 +1,11 @@
 # client
 
+## Tools Used
+```
+axios, bootstrap, bootstrap-vue, sweetalert2,
+vue, vue-google-oauth2, vue-router, vuex, vue-cli
+```
+
 ## Project setup
 ```
 npm install

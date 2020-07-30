@@ -2,7 +2,8 @@
   <div>
     <Navbar/>
     <b-card class="text-center register register-card">
-    <h1>Register</h1>
+    <h1 v-if="this.$route.params.role === 'admin'">Register Admin</h1>
+    <h1 v-else>Register</h1>
         <b-form @submit.prevent="register" @reset="onReset">
           <b-form-group id="input-group-1" label="Email address:" label-for="input-1">
               <b-form-input
@@ -22,15 +23,6 @@
               required
               placeholder="password"
               ></b-form-input>
-          </b-form-group>
-
-          <b-form-group id="input-group-3" label="Role:" label-for="input-3">
-              <b-form-select
-              id="input-3"
-              v-model="data.role"
-              :options="roles"
-              required
-              ></b-form-select>
           </b-form-group>
 
           <b-button type="submit" variant="primary" class="m-1">Submit</b-button>
@@ -55,9 +47,15 @@ export default {
       data: {
         email: '',
         password: '',
-        role: null
-      },
-      roles: [{ text: 'Select One', value: null }, 'admin', 'customer']
+        role: 'customer'
+      }
+    }
+  },
+  created () {
+    if (this.$route.params.role === 'admin') {
+      this.data.role = 'admin'
+    } else {
+      this.data.role = 'customer'
     }
   },
   methods: {

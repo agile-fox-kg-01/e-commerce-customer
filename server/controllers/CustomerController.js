@@ -38,7 +38,6 @@ class CustomerController {
 						ProductId: req.params.id
 					}
 				})
-				console.log(carts)
 				if(carts === null) {
 					const cart = {
 						UserId: req.userLogin.id,

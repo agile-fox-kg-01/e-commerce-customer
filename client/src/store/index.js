@@ -96,11 +96,11 @@ export default new Vuex.Store({
             timer: 1000
           })
         })
-        .catch(() => {
+        .catch((err) => {
           Swal.fire({
             icon: 'error',
             title: 'Oops... this is awkward',
-            text: 'please contact developers ^^'
+            text: err.response.data.errors
           })
         })
     },

@@ -4,6 +4,56 @@
 
 [e-commerce-customer](https://ecomm-customer-sandi.web.app/)
 
+# ClientSide Routes
+----
+  **Home**
+----
+* **URL**
+
+  /
+
+----
+  **Login**
+----
+* **URL**
+
+  /login
+
+----
+  **Register Customer**
+----
+* **URL**
+
+  /register
+
+----
+  **Register Admin**
+----
+* **URL**
+
+  /register/admin
+
+----
+  **Single Product**
+----
+* **URL**
+
+  /product/:id
+
+----
+  **Cart**
+----
+* **URL**
+
+  /cart
+
+----
+  **Transaction**
+----
+* **URL**
+
+  /transaction
+
 ## NEW API UPDATE Documentation
 
 ----
