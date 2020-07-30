@@ -1,0 +1,32 @@
+[
+  {
+    "name": "tumblers",
+    "imageUrl": "https://cf.shopee.co.id/file/180cf40bbd616e6f83c470259ddb3915",
+    "alt": "Second slide"
+  },
+  {
+    "name": "clothes",
+    "imageUrl": "https://immago.com/wp-content/uploads/2018/06/clothes-with-label.jpg",
+    "alt": "Third slide"
+  },
+  {
+    "name": "gadgets",
+    "imageUrl": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-xr-select-2019-family?wid=882&amp;hei=1058&amp;fmt=jpeg&amp;qlt=80&amp;op_usm=0.5,0.5&amp;.v=1550795424612",
+    "alt": "Fourth slide"
+  },
+  {
+    "name": "laptop",
+    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTyJg3zjGz87XneYOgxOsWKZSPTrFf_ZXm-mA&usqp=CAU",
+    "alt": "Fivth slide"
+  },
+  {
+    "name": "toys",
+    "imageUrl": "https://cdn3.vectorstock.com/i/1000x1000/18/42/set-of-different-cartoon-kids-toys-vector-15381842.jpg",
+    "alt": "Sixth slide"
+  },
+  {
+    "name": "books",
+    "imageUrl": "https://img.jakpost.net/c/2019/03/02/2019_03_02_66706_1551461528._large.jpg",
+    "alt": "Seventh slide"
+  }
+]
