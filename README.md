@@ -2,7 +2,7 @@
 
 Deploy Here:
 
-[Ecommerce/Customer/Admin](https://e-commerce-customer-admin.herokuapp.com/)
+[Ecommerce/CMS-Server](https://ecommerce-cms-fd3f9.web.app/login)
 
 ## API Documentation
 
